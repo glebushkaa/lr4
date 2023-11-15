@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 // Function to calculate factorial
 double factorial(int n) {
@@ -13,7 +13,7 @@ double calculateSeries(double x, double epsilon, int maxSteps, int *numSteps) {
     double term;
     *numSteps = 0;
 
-    for (int n = 1; ; ++n) {
+    for (int n = 1;; ++n) {
         term = ((n + 1) * pow(x, n + 2)) / factorial(n + 2);
         result += term;
         *numSteps += 1;
@@ -33,6 +33,11 @@ int main() {
         printf("Enter the value of x: ");
         scanf("%lf", &x);
 
+        if (x < -10 || x > 10) {
+            printf("Invalid x. X must be in range of -10 to 10.\n");
+            continue;
+        }
+
         printf("Enter the epsilon value (e.g., 1e-6): ");
         scanf("%lf", &epsilon);
 
@@ -42,7 +47,7 @@ int main() {
         if (epsilon <= 0 || maxSteps <= 0) {
             printf("Invalid input. Epsilon and maxSteps must be positive.\n");
         }
-    } while (epsilon <= 0 || maxSteps <= 0);
+    } while (epsilon <= 0 || maxSteps <= 0 || x < -10 || x > 10);
 
     // Calculate the right part
     int numSteps;
